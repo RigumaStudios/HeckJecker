@@ -1,3 +1,4 @@
+Sprite2D
 Node
 AudioStreamPlayer
 Polygon2D
@@ -12,4 +13,3 @@ GPUParticles2D
 Timer
 CanvasGroup
 CollisionShape2D
-StaticBody2D

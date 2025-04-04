@@ -13,6 +13,7 @@ var push_strength: float = 0.0
 var push_timer: float = 0.0
 
 # Reference
+@onready var sprite: = $Sprite2D
 @onready var body_lr: Polygon2D = $BodyLR
 @onready var body_rotate: Polygon2D = $BodyRotate
 @onready var body_lr_player: AnimationPlayer = $BodyLRPlayer
@@ -34,8 +35,10 @@ func _physics_process(delta):
 	# Movement input
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
+		sprite.flip_h = false
 	if Input.is_action_pressed("move_left"):
 		velocity.x -= 1
+		sprite.flip_h = true
 	if Input.is_action_pressed("move_down"):
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):

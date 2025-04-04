@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqpatfifsn3sg"]
+[gd_scene load_steps=17 format=3 uid="uid://cqpatfifsn3sg"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_sy1wy"]
 [ext_resource type="AudioStream" uid="uid://b5y5j2t81dq1l" path="res://assets/sound_effects/laserShoot.wav" id="2_qiobg"]
+[ext_resource type="Texture2D" uid="uid://blde15eqtswj3" path="res://assets/sprites/player.png" id="2_txn5o"]
 
 [sub_resource type="Curve" id="Curve_5phf1"]
 _data = [Vector2(0, 0.384615), 0.0, 0.0, 0, 0, Vector2(0.320988, 0.978022), 0.0, 0.0, 0, 0, Vector2(0.460905, 0.626374), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -136,6 +137,10 @@ collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_sy1wy")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_txn5o")
+
 [node name="CollisionBodyLR" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(16, -32, -8, -32, -24, 32, 16, 32)
 
@@ -148,16 +153,9 @@ lifetime = 0.1
 one_shot = true
 
 [node name="BodyLR" type="Polygon2D" parent="."]
+visible = false
 color = Color(0.0392157, 0.576471, 0.588235, 1)
 polygon = PackedVector2Array(-16, -32, -16, 32, 24, 32, 16, 0, 8, -32)
-
-[node name="Shadow" type="Polygon2D" parent="BodyLR"]
-z_index = -48
-position = Vector2(-2, -3)
-rotation = 3.14159
-scale = Vector2(1, -1)
-color = Color(0, 0, 0, 0.376471)
-polygon = PackedVector2Array(-26, 24, -29, 32, -26, 40, 17, 40, 17, 24)
 
 [node name="BodyLRPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../BodyLR")
