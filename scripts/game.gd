@@ -8,14 +8,15 @@ var start_pos: Vector2
 var enemy_list: Array = []
 var noise_i: float = 0.0
 var shake_strength: float = 0.0
-
+@onready var damage_content: = $TextEdit
 @onready var camera: Camera2D = $Camera2D
 @onready var enemy_class = preload("res://scenes/enemy.tscn")
 @onready var player: CharacterBody2D = $Player
 @onready var noise = FastNoiseLite.new()
 @onready var rand = RandomNumberGenerator.new()
-
+@onready var damage = $TextEdit.text
 func _ready():
+	print(damage_content.text)
 	var screen_size = get_viewport_rect().size
 	start_pos = Vector2(screen_size.x/2, screen_size.y/2)
 	player.setup(start_pos)

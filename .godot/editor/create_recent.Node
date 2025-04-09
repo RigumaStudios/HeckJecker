@@ -1,3 +1,4 @@
+TextEdit
 Sprite2D
 Node
 AudioStreamPlayer
@@ -12,4 +13,3 @@ CollisionPolygon2D
 GPUParticles2D
 Timer
 CanvasGroup
-CollisionShape2D

@@ -30,6 +30,7 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	hide()
 
+
 func _physics_process(delta):
 	velocity = Vector2.ZERO # The player's movement vector.
 	# Movement input

@@ -1,11 +1,13 @@
 extends Area2D
 
+
 @export var speed: float = 800.0
 @export var damage: int = 30
 
 @onready var bullet_particle = preload("res://scenes/bullet_particle.tscn")
 @onready var bullet_hit_sound = preload("res://scenes/bullet_hit_sound.tscn")
 
+	
 func _physics_process(delta):
 	position += transform.x * speed * delta
 

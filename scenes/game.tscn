@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bduw5gb057ino"]
+[gd_scene load_steps=6 format=3 uid="uid://bduw5gb057ino"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_5vnjt"]
 [ext_resource type="PackedScene" uid="uid://cqpatfifsn3sg" path="res://scenes/player.tscn" id="2_n47hv"]
+[ext_resource type="Script" path="res://scripts/TextEdit.gd" id="3_ltc6m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nvpe"]
 size = Vector2(1024, 55.3125)
@@ -59,3 +60,12 @@ polygon = PackedVector2Array(64, 56, 64, 320, 64, 584, 1088, 584, 1088, 56)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 323)
+
+[node name="TextEdit" type="TextEdit" parent="."]
+unique_name_in_owner = true
+offset_left = 215.0
+offset_top = 164.0
+offset_right = 425.0
+offset_bottom = 253.0
+text = "30"
+script = ExtResource("3_ltc6m")

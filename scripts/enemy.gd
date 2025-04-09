@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 signal enemy_destroyed(enemy)
-
 @export var health: int = 100
 @export var speed: float = 50.0
 
@@ -16,6 +15,7 @@ var push_timer: float = 0.0
 
 func _ready():
 	damage_text.visible = false
+
 
 func setup(pos: Vector2, _player: CharacterBody2D):
 	position = pos

@@ -154,6 +154,7 @@ one_shot = true
 
 [node name="BodyLR" type="Polygon2D" parent="."]
 visible = false
+scale = Vector2(-1, 1)
 color = Color(0.0392157, 0.576471, 0.588235, 1)
 polygon = PackedVector2Array(-16, -32, -16, 32, 24, 32, 16, 0, 8, -32)
 
@@ -165,6 +166,7 @@ libraries = {
 playback_default_blend_time = 0.2
 
 [node name="BodyRotate" type="Polygon2D" parent="."]
+position = Vector2(-2, 0)
 color = Color(0.580392, 0.823529, 0.741176, 1)
 polygon = PackedVector2Array(32, 0, -24, -16, -24, 16)
 
