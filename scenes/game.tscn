@@ -63,9 +63,9 @@ position = Vector2(576, 323)
 
 [node name="TextEdit" type="TextEdit" parent="."]
 unique_name_in_owner = true
-offset_left = 215.0
-offset_top = 164.0
-offset_right = 425.0
-offset_bottom = 253.0
+offset_left = 576.0
+offset_top = 121.0
+offset_right = 786.0
+offset_bottom = 210.0
 text = "30"
 script = ExtResource("3_ltc6m")
