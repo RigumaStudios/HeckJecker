@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Global="*res://glob.gd"
 SignalBus="*res://signalBus.gd"
 
+[display]
+
+window/vsync/vsync_mode=2
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
@@ -78,6 +82,7 @@ Esc={
 2d_physics/layer_1="player"
 2d_physics/layer_2="walls"
 2d_physics/layer_3="birds"
+2d_physics/layer_4="Damage"
 
 [rendering]
 

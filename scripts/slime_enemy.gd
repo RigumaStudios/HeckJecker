@@ -5,14 +5,14 @@ extends CharacterBody2D
 @onready var explosion = preload("res://scenes/airstrike.tscn")
 @onready var blood = preload("res://scenes/blood.tscn")
 
-var speed : float = 70
+var speed : float = 20
 var accel : float = 100
 var flash : bool = false
-var health : float = Global.birdHP
+var health : float = Global.slimeHP
 var blind = true
 var setHealth = true
 func changeStats():
-	health = Global.birdHP
+	health = Global.slimeHP
 
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
@@ -21,19 +21,19 @@ func _ready() -> void:
 	SignalBus.enemyDataChanged.connect(changeStats)
 
 func _process(delta: float) -> void:
+	print(blind)
 	if setHealth or Global.birdStatChange:
 		changeStats()
 	if !flash:
 		var direction = global_position.direction_to(Global.player.global_position) if !blind else Vector2.ZERO
 		velocity = direction * speed
 		$Sprite.flip_h = !Global.neg(direction.x)
-	else:
-		velocity = lerp(velocity, Vector2.ZERO, 0.2)
 	if Global.iframes:
 		set_collision_mask_value(1, false)
 		
 	elif !Global.iframes:
 		set_collision_mask_value(1, true)
+		
 	move_and_slide()
 	
 	
@@ -55,15 +55,13 @@ func _process(delta: float) -> void:
 func _on_bird_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EDamage"):
 		Global.birdStatChange = false
-		setHealth = false
 		blind = false
+		setHealth = false
 		$sounds/hit.play()
 		area.get_parent().queue_free()
 		health -= Global.damage
 		flash = true
-		$flashCooldown.start()
-		velocity = velocity * -5
-		
+		$flashCooldown.start()		
 		
 
 
@@ -80,8 +78,3 @@ func _on_vision_area_entered(area: Area2D) -> void:
 func _on_vision_area_exited(area: Area2D) -> void:
 	if area.is_in_group("playerSpot"):
 		blind = true
-
-
-func _on_damage_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Player"):
-		Global.justDamaged = true

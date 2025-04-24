@@ -13,8 +13,8 @@ var birdHP : float = 8
 var slimeHP : float = 99
 var lockLv1 : float = 1
 var menuScene
-var birdStatChange = true
-
+var birdStatChange : bool = true
+var justDamaged : bool
 func clone(scene, where):
 	var instantiated = scene.instantiate()
 	cloneParent.add_child(instantiated)

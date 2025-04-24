@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bmktll0t3dd3s"]
+[gd_scene load_steps=35 format=3 uid="uid://bmktll0t3dd3s"]
 
 [ext_resource type="Script" uid="uid://ctblajrbtuok" path="res://scripts/player.gd" id="1_8erm5"]
 [ext_resource type="Texture2D" uid="uid://cw5xk74r5n7db" path="res://assets/sprites/technical/pointgradientbig.png" id="2_a38lo"]
@@ -22,6 +22,8 @@
 [ext_resource type="AudioStream" uid="uid://bkkslfkdmu2dj" path="res://assets/sound/sound_effects/gun.wav" id="17_qfm1y"]
 [ext_resource type="Texture2D" uid="uid://lu7a8e8oh14" path="res://assets/sprites/technical/pointgradient.png" id="19_a38lo"]
 [ext_resource type="AudioStream" uid="uid://dc5yi0j1yd0o0" path="res://assets/sound/sound_effects/dirt step.ogg" id="20_60mlk"]
+[ext_resource type="Texture2D" uid="uid://dsav1hep3qmkg" path="res://assets/sprites/objects/gun1.png" id="23_4ni07"]
+[ext_resource type="Script" uid="uid://dulb6ceky4ovp" path="res://scripts/gun_1.gd" id="24_l71n6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrlw"]
 size = Vector2(6, 12)
@@ -117,13 +119,13 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4r5pv"]
 size = Vector2(8, 8)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 3
 script = ExtResource("1_8erm5")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 z_index = -30
-energy = 1.22
+energy = 0.61
 range_z_max = 0
 shadow_enabled = true
 shadow_filter = 2
@@ -225,6 +227,14 @@ attenuation = 1.03527
 [node name="dirtStep" type="AudioStreamPlayer2D" parent="sounds"]
 stream = ExtResource("20_60mlk")
 volume_db = 14.215
+
+[node name="Gun" type="Node2D" parent="."]
+scale = Vector2(0.708333, 0.708333)
+script = ExtResource("24_l71n6")
+
+[node name="Gun1" type="Sprite2D" parent="Gun"]
+position = Vector2(5.64706, 1.41176)
+texture = ExtResource("23_4ni07")
 
 [connection signal="timeout" from="Camera2D/Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]

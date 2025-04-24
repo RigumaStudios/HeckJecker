@@ -25,6 +25,7 @@ func esc():
 		resume()
 func _process(delta: float) -> void:
 	Global.birdHP = float($bird.text)
+	Global.slimeHP = float($slime.text)
 	pauseState = get_tree().paused
 	esc()
 
@@ -33,4 +34,3 @@ func _process(delta: float) -> void:
 func _on_locks_text_changed(new_text: String) -> void:
 	SignalBus.enemyDataChanged.emit()
 	Global.birdStatChange = true
-	Global.birdHP = float($bird.text)

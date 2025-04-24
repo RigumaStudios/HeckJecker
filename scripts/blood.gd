@@ -4,7 +4,6 @@ var fading = false
 func _ready() -> void:
 	$Blood.flip_h = Global.neg(randi_range(-2,1))
 	$Blood.flip_v = Global.neg(randi_range(-2,1))
-	print(rotation)
 
 func _process(delta: float) -> void:
 	var opac : float = $fade.time_left

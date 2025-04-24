@@ -7,6 +7,7 @@ var cooldown : bool = true
 var dashDecelStart : bool = true
 var dashCooldown : bool = false
 var bulletScene : = preload("res://Scenes/bullet.tscn")
+var hp : float = 10
 @onready var trail = $Trail
 @onready var glow = $Glow
 
@@ -70,6 +71,8 @@ func _process(delta: float) -> void:
 	#print(mousex(), "  ", dashDecelStart, "  ", Input.is_action_just_pressed("LMouse"))
 func _physics_process(_delta):
 	var direction : Vector2 = Input.get_vector("Left", "Right", "Up", "Down")
+	
+	#damage
 	
 	#handles dashing
 	if Input.is_action_pressed("LShift") or Input.is_action_pressed("RMouse"):

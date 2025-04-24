@@ -4,7 +4,7 @@ func _ready() -> void:
 	Global.cloneParent = self
 	
 func _process(delta: float) -> void:
-	Global.damage = float($TextEdit.text)
+	Global.damage = 1
 	if Global.score > 1 and playOnce:
 		$musSquare/startDelay.start()
 		playOnce = false

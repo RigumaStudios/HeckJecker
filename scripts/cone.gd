@@ -31,7 +31,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("EDamage"):
 		$sounds/hit.play()
 		area.get_parent().queue_free()
-		print("a")
 		health -= Global.damage
 		flash = true
 		$flashCooldown.start()

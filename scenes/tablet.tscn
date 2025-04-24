@@ -98,6 +98,7 @@ default_font = ExtResource("5_1e7px")
 
 [node name="Tablet" type="Control"]
 process_mode = 3
+visible = false
 z_index = 1015
 layout_mode = 3
 anchors_preset = 15
@@ -149,6 +150,7 @@ z_index = -1
 position = Vector2(120, 80)
 sprite_frames = SubResource("SpriteFrames_k2t3k")
 animation = &"l1-3"
+autoplay = "l1-1"
 
 [node name="bird" type="LineEdit" parent="."]
 layout_mode = 0
