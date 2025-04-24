@@ -1,0 +1,124 @@
+[gd_scene load_steps=15 format=3 uid="uid://bfwik3hl4l2d1"]
+
+[ext_resource type="Script" uid="uid://c6v8t4x4dhynw" path="res://Scripts/menu.gd" id="1_qxrlw"]
+[ext_resource type="Script" uid="uid://ctblajrbtuok" path="res://Scripts/player.gd" id="2_wrm1d"]
+[ext_resource type="Texture2D" uid="uid://df4max58nqwea" path="res://assets/sprites/player1.png" id="3_1l0tm"]
+[ext_resource type="Script" uid="uid://xlqea6aj4shb" path="res://Scenes/camera_2d.gd" id="3_h4fw4"]
+[ext_resource type="Texture2D" uid="uid://tbagjaspt6ix" path="res://assets/sprites/run2.png" id="4_h4fw4"]
+[ext_resource type="Texture2D" uid="uid://c3n8bpxqtwk8e" path="res://assets/sprites/player2.png" id="4_v158k"]
+[ext_resource type="Texture2D" uid="uid://cbfmkoqrvsk0d" path="res://assets/sprites/player3.png" id="5_h4fw4"]
+[ext_resource type="Texture2D" uid="uid://d004mkwi6l8mh" path="res://assets/sprites/player4.png" id="6_ldgsr"]
+[ext_resource type="Texture2D" uid="uid://d0ri24dpupebj" path="res://assets/sprites/player5.png" id="7_o5yvi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrlw"]
+size = Vector2(6, 12)
+
+[sub_resource type="Animation" id="Animation_3dryh"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_wrm1d"]
+resource_name = "Turn"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wowpa"]
+_data = {
+&"RESET": SubResource("Animation_3dryh"),
+&"Turn": SubResource("Animation_wrm1d")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rku1e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1l0tm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h4fw4")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1l0tm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v158k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_h4fw4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ldgsr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_o5yvi")
+}],
+"loop": true,
+"name": &"Turn",
+"speed": 21.0
+}]
+
+[node name="Game" type="Node2D"]
+
+[node name="Menu" type="Node2D" parent="."]
+script = ExtResource("1_qxrlw")
+
+[node name="Lv1" type="Node" parent="."]
+
+[node name="Player" type="CharacterBody2D" parent="Lv1"]
+script = ExtResource("2_wrm1d")
+
+[node name="Hitbox" type="CollisionShape2D" parent="Lv1/Player"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_qxrlw")
+
+[node name="Camera2D" type="Camera2D" parent="Lv1/Player"]
+zoom = Vector2(3.89, 3.89)
+position_smoothing_enabled = true
+script = ExtResource("3_h4fw4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Lv1/Player"]
+libraries = {
+&"": SubResource("AnimationLibrary_wowpa")
+}
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Lv1/Player"]
+sprite_frames = SubResource("SpriteFrames_rku1e")
+animation = &"Run"
+
+[node name="TurnCooldown" type="Timer" parent="Lv1/Player/Sprite"]
+wait_time = 0.5
+
+[node name="BulletCooldown" type="Timer" parent="Lv1/Player"]
+wait_time = 0.2
+
+[node name="TextEdit" type="TextEdit" parent="Lv1"]
+offset_left = 34.0
+offset_top = -12.0
+offset_right = 100.0
+offset_bottom = 25.0
+text = "aaa"
+
+[node name="TextEdit3" type="TextEdit" parent="Lv1"]
+offset_left = -57.0
+offset_top = 40.0
+offset_right = 9.0
+offset_bottom = 77.0
+text = "aaa"
+
+[node name="TextEdit2" type="TextEdit" parent="Lv1"]
+offset_left = -92.0
+offset_top = -36.0
+offset_right = -26.0
+offset_bottom = 1.0
+text = "aaa"
+
+[node name="TextEdit4" type="TextEdit" parent="Lv1"]
+offset_left = 19.0
+offset_top = -74.0
+offset_right = 85.0
+offset_bottom = -37.0
+text = "aaa"
+
+[connection signal="timeout" from="Lv1/Player/BulletCooldown" to="Lv1/Player" method="_on_bullet_cooldown_timeout"]

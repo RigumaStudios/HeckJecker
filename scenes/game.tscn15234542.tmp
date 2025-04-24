@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfwik3hl4l2d1"]
+
+[ext_resource type="Script" uid="uid://c6v8t4x4dhynw" path="res://scripts/menu.gd" id="1_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://bmktll0t3dd3s" path="res://scenes/player.tscn" id="2_qxrlw"]
+[ext_resource type="Script" uid="uid://b3rrp35xgo220" path="res://scripts/lv_1.gd" id="2_wrm1d"]
+[ext_resource type="Script" uid="uid://kjgdby0yo58q" path="res://scripts/text_edit_4.gd" id="4_3dryh"]
+[ext_resource type="PackedScene" uid="uid://ckbsiy5ul4p2a" path="res://scenes/birdEnemy.tscn" id="5_iywne"]
+[ext_resource type="AudioStream" uid="uid://d1yivvkrwq77e" path="res://assets/sound/music/Onefin - Square.wav" id="6_p57ef"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Menu" type="Node2D" parent="."]
+script = ExtResource("1_qxrlw")
+
+[node name="Lv1" type="Node2D" parent="."]
+script = ExtResource("2_wrm1d")
+
+[node name="Player" parent="Lv1" instance=ExtResource("2_qxrlw")]
+
+[node name="TextEdit" type="TextEdit" parent="Lv1"]
+z_index = -20
+offset_left = 34.0
+offset_top = -12.0
+offset_right = 100.0
+offset_bottom = 25.0
+text = "200"
+
+[node name="TextEdit3" type="TextEdit" parent="Lv1"]
+z_index = -20
+offset_left = -57.0
+offset_top = 40.0
+offset_right = 9.0
+offset_bottom = 77.0
+text = "aaa"
+
+[node name="TextEdit2" type="TextEdit" parent="Lv1"]
+z_index = -20
+offset_left = -92.0
+offset_top = -36.0
+offset_right = -26.0
+offset_bottom = 1.0
+text = "aaa"
+
+[node name="TextEdit4" type="TextEdit" parent="Lv1"]
+z_index = -20
+offset_left = 19.0
+offset_top = -74.0
+offset_right = 85.0
+offset_bottom = -37.0
+text = "aaa"
+script = ExtResource("4_3dryh")
+
+[node name="BirdE2" parent="Lv1" instance=ExtResource("5_iywne")]
+
+[node name="BirdE" parent="Lv1" instance=ExtResource("5_iywne")]
+
+[node name="BirdE3" parent="Lv1" instance=ExtResource("5_iywne")]
+
+[node name="BirdE4" parent="Lv1" instance=ExtResource("5_iywne")]
+
+[node name="BirdE5" parent="Lv1" instance=ExtResource("5_iywne")]
+
+[node name="BirdE6" parent="Lv1" instance=ExtResource("5_iywne")]
+
+[node name="BirdE7" parent="Lv1" instance=ExtResource("5_iywne")]
+
+[node name="BirdE8" parent="Lv1" instance=ExtResource("5_iywne")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Lv1"]
+stream = ExtResource("6_p57ef")
+volume_db = -12.18

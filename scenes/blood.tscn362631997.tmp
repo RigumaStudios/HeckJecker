@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bihv0lxoj4tn0"]
+
+[ext_resource type="Texture2D" uid="uid://otjg0a32jac7" path="res://assets/sprites/objects/blood.png" id="1_kl077"]
+[ext_resource type="Script" uid="uid://bk73kru3pu2n6" path="res://scenes/blood.gd" id="1_uli77"]
+
+[node name="blood" type="Node2D"]
+script = ExtResource("1_uli77")
+
+[node name="Blood" type="Sprite2D" parent="."]
+scale = Vector2(0.987043, 0.998835)
+texture = ExtResource("1_kl077")
+
+[node name="fade" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="exist" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="fade" to="." method="_on_fade_timeout"]
+[connection signal="timeout" from="exist" to="." method="_on_exist_timeout"]

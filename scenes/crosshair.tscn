@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyx6jgo13173n"]
+
+[ext_resource type="Texture2D" uid="uid://b3onussbki3ka" path="res://assets/sprites/technical/crosshair.png" id="1_6blvt"]
+[ext_resource type="Script" uid="uid://s4sbc6s2c2mw" path="res://scripts/crosshair.gd" id="1_norqy"]
+
+[node name="crosshair" type="Node2D"]
+z_index = -30
+script = ExtResource("1_norqy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Crosshair" type="Sprite2D" parent="CanvasLayer"]
+z_index = -20
+scale = Vector2(2.625, 2.625)
+texture = ExtResource("1_6blvt")

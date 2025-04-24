@@ -1,0 +1,190 @@
+[gd_scene load_steps=17 format=3 uid="uid://bwgqktyg4vnbj"]
+
+[ext_resource type="Texture2D" uid="uid://dk86yaqd3c3ef" path="res://assets/sprites/technical/menu.png" id="1_2qyfy"]
+[ext_resource type="Script" uid="uid://cgffpaq48uv6t" path="res://scripts/tablet.gd" id="1_nk2fr"]
+[ext_resource type="Shader" uid="uid://ede23oi38xo7" path="res://scripts/shaders/blur.gdshader" id="2_jwrmr"]
+[ext_resource type="Texture2D" uid="uid://drmocddoqfywb" path="res://assets/sprites/objects/spawnpoint.png" id="3_suit2"]
+[ext_resource type="FontFile" uid="uid://c5u1oxyn4agfo" path="res://assets/typefaces/Habbo.ttf" id="5_1e7px"]
+[ext_resource type="Texture2D" uid="uid://dhmbqt5fwouc6" path="res://assets/sprites/technical/menu1.png" id="5_crc8g"]
+[ext_resource type="Texture2D" uid="uid://cm4vit60f4q7g" path="res://assets/sprites/technical/menu2.png" id="6_q3dch"]
+[ext_resource type="Texture2D" uid="uid://bg5d55v1dtpbh" path="res://assets/sprites/technical/menu3.png" id="7_81qm8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_suit2"]
+shader = ExtResource("2_jwrmr")
+shader_parameter/lod = 2.022
+
+[sub_resource type="Animation" id="Animation_crc8g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.022]
+}
+
+[sub_resource type="Animation" id="Animation_7serw"]
+resource_name = "blur"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.420448, 1),
+"update": 0,
+"values": [0.0, 2.022]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q3dch"]
+_data = {
+&"RESET": SubResource("Animation_crc8g"),
+&"blur": SubResource("Animation_7serw")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k2t3k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2qyfy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_crc8g")
+}],
+"loop": true,
+"name": &"l1-1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_q3dch")
+}],
+"loop": true,
+"name": &"l1-2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_81qm8")
+}],
+"loop": true,
+"name": &"l1-3",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"l1-4",
+"speed": 5.0
+}]
+
+[sub_resource type="Theme" id="Theme_ny6wr"]
+default_font = ExtResource("5_1e7px")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gnwwp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r70x7"]
+
+[node name="Tablet" type="Control"]
+process_mode = 3
+z_index = 1015
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nk2fr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+material = SubResource("ShaderMaterial_suit2")
+layout_mode = 0
+offset_left = -73.0
+offset_top = -30.0
+offset_right = 325.0
+offset_bottom = 193.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_q3dch")
+}
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+offset_left = 131.0
+offset_top = 98.0
+offset_right = 205.0
+offset_bottom = 131.0
+alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_suit2")
+
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("3_suit2")
+
+[node name="TextureButton3" type="TextureButton" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("3_suit2")
+
+[node name="Menu" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(120, 80)
+sprite_frames = SubResource("SpriteFrames_k2t3k")
+animation = &"l1-3"
+
+[node name="bird" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 48.0
+offset_right = 133.0
+offset_bottom = 69.0
+theme = SubResource("Theme_ny6wr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gnwwp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_r70x7")
+text = "8"
+max_length = 2
+emoji_menu_enabled = false
+
+[node name="slime" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 60.0
+offset_right = 138.0
+offset_bottom = 81.0
+theme = SubResource("Theme_ny6wr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gnwwp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_r70x7")
+text = "99"
+max_length = 2
+
+[node name="locks" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 70.0
+offset_right = 158.0
+offset_bottom = 91.0
+theme = SubResource("Theme_ny6wr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gnwwp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_r70x7")
+text = "1"
+max_length = 2
+
+[connection signal="text_changed" from="locks" to="." method="_on_locks_text_changed"]

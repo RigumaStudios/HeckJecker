@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://df3b3dgflmr3g"]
+
+[ext_resource type="Script" uid="uid://cnyc1k47cobco" path="res://scripts/cone.gd" id="1_iemwe"]
+[ext_resource type="Texture2D" uid="uid://bul66ynvlkhxy" path="res://assets/sprites/objects/cone.png" id="2_ddcyk"]
+[ext_resource type="AudioStream" uid="uid://cnth17vcd27fy" path="res://assets/sound/sound_effects/impactSoft_heavy_002.ogg" id="3_s0vbq"]
+[ext_resource type="AudioStream" uid="uid://dqc41bvp1aoyh" path="res://assets/sound/sound_effects/splat.wav" id="4_h6vwy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skhg2"]
+size = Vector2(16, 16)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_iemwe"]
+polygon = PackedVector2Array(-6, 0, -6, 7, 6, 7, 6, 0, 0, -7)
+
+[node name="cone" type="Node2D"]
+script = ExtResource("1_iemwe")
+
+[node name="Cone" type="Sprite2D" parent="."]
+texture = ExtResource("2_ddcyk")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_skhg2")
+
+[node name="flashCooldown" type="Timer" parent="."]
+wait_time = 0.094
+one_shot = true
+
+[node name="sounds" type="Node" parent="."]
+
+[node name="hit" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource("3_s0vbq")
+volume_db = 0.11
+
+[node name="explode" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource("4_h6vwy")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_skhg2")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+y_sort_enabled = true
+occluder = SubResource("OccluderPolygon2D_iemwe")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="flashCooldown" to="." method="_on_flash_cooldown_timeout"]
